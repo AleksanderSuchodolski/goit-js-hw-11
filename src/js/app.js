@@ -34,7 +34,7 @@ form.addEventListener("submit", onSubmit);
 async function onSubmit(event) {
     event.preventDefault();
     pixabayAPI.page = 1;
-    isFirstLoad = true;
+    // isFirstLoad = true;
     isSubmit = true;
     list.innerHTML = "";
 
