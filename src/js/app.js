@@ -35,7 +35,7 @@ async function onSubmit(event) {
     event.preventDefault();
     pixabayAPI.page = 1;
     // isFirstLoad = true;
-    isSubmit = true;
+    // isSubmit = true;
     list.innerHTML = "";
 
     const searchQuery = event.target.elements["user-search-query"].value.trim();
