@@ -58,9 +58,9 @@ async function onSubmit(event) {
 
         if (response.data.hits.length === 0) {
             list.innerHTML = "";
-
             observer.unobserve(anchor);
         }
+
         if (response.data.total > pixabayAPI.perPage) {
             observer.observe(anchor);
         }
@@ -82,6 +82,7 @@ async function loadMoreData() {
             }
         }
         pixabayAPI.page += 1;
+      
     } catch (error) {console.log(error);
 }
 }
