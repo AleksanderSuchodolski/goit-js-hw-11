@@ -1,8 +1,12 @@
-
+// Описаний в документації
+import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
 import { PixabayAPI } from "./pixabay-app.js";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { createMarkUp } from "./createmarkup.js";
 
+const lightbox = new SimpleLightbox('.gallery a', { captionsData: "alt", captionDelay: 250 });
 
 const refs = {
     form: document.querySelector(".search-form"),
@@ -55,6 +59,7 @@ async function onSubmit(event) {
         }
 
         list.innerHTML = createMarkUp(response.data.hits);
+        lightbox.refresh()
 
         if (response.data.hits.length === 0) {
             list.innerHTML = "";
@@ -68,20 +73,20 @@ async function onSubmit(event) {
   } catch (error) {console.log(error);
  }
 }
+
 async function loadMoreData() {
+    pixabayAPI.page += 1;
+
     try{
-        
-        if (pixabayAPI.page > 1) {
+
             const response = await pixabayAPI.getPhotos();
             list.insertAdjacentHTML("beforeend", createMarkUp(response.data.hits));
-
+            lightbox.refresh()
 
             if (Math.ceil(response.data.totalHits / 40) === pixabayAPI.page) {
                 observer.unobserve(anchor);
                return Notify.success("We're sorry, but you've reached the end of search results.");
             }
-        }
-        pixabayAPI.page += 1;
       
     } catch (error) {console.log(error);
 }

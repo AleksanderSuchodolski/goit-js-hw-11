@@ -16,7 +16,7 @@ getPhotos() {
             key: this.#API_KEY,
             q: this.q,
             page: this.page,
-            per_page: this.per_page,
+            per_page: this.perPage,
             image_type: `photo`,
             orientation:`horizontal`,
             safesearch: true,
